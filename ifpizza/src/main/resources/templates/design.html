@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Monte sua Pizza</title>
+	</head>
+	
+	<body>
+		<h1>Monte sua Pizza</h1>
+		
+		<form method="post" th:object="${pizza}">
+			<h3>Escolha sua borda:</h3>
+			<div th:each="ingrediente : ${borda}">
+				<input type="checkbox" name="ingredientes"
+					th:value="${ingrediente.id}" th.id="${ingredienteid}">
+				<label th:for="${ingrediente.id}"
+					th:text="${ingrediente.nome}">ingrediente</label
+			</div>
+			
+				<h3>Escolha sua proteina:</h3>
+			<div th:each="ingrediente : ${proteina}">
+				<input type="checkbox" name="ingredientes"
+					th:value="${ingrediente.id}" th.id="${ingredienteid}">
+				<label th:for="${ingrediente.id}"
+					th:text="${ingrediente.nome}">ingrediente</label
+			</div>
+			
+				<h3>Escolha seus vegetais:</h3>
+			<div th:each="ingrediente : ${vegetais}">
+				<input type="checkbox" name="ingredientes"
+					th:value="${ingrediente.id}" th.id="${ingredienteid}">
+				<label th:for="${ingrediente.id}"
+					th:text="${ingrediente.nome}">ingrediente</label
+			</div>
+			
+				<h3>Escolha seus queijos:</h3>
+			<div th:each="ingrediente : ${queijo}">
+				<input type="checkbox" name="ingredientes"
+					th:value="${ingrediente.id}" th.id="${ingredienteid}">
+				<label th:for="${ingrediente.id}"
+					th:text="${ingrediente.nome}">ingrediente</label
+			</div>
+			
+			<br>
+			<label>Dê um nome para sua pizza</label>
+			<input type ="text" th:field="*{nome}">
+			
+			<br>
+			<button type="submit">Enviar</button>
+	</body>
+</html>
