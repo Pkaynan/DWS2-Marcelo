@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Ifpizza</title>
+<meta charset="UTF-8">
+<title>IFPizza</title>
 </head>
-
 <body>
-	<h1>If Pizza</h1>
+	<h1>IFPizza</h1>
+	
 	<img th:src="@{/images/logo.jpg}">
-</body>
+	
+	<h2>
+		<a th:href="@{/design}">Monte sua pizza!</a>
+	</h2>
 
+</body>
 </html>

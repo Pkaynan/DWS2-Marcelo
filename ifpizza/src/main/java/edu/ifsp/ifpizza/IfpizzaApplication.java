@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IfpizzaApplication {
+public class IfPizzaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(IfpizzaApplication.class, args);
+		SpringApplication.run(IfPizzaApplication.class, args);
 	}
 
 }
