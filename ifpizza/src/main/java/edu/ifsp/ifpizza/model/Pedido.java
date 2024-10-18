@@ -1,6 +1,8 @@
 package edu.ifsp.ifpizza.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +14,7 @@ import lombok.Data;
 public class Pedido {
 	private Long id;
 	private Date dataCriacao;
+	private List<Pizza> pizzas = new ArrayList<>();
 	
 	@NotBlank(message = "Informe um nome")
 	private String nome;
@@ -36,6 +39,10 @@ public class Pedido {
 	@Digits(integer = 3, fraction = 0, message = "Informe o CVV com 3 dígitos")
 	private String cartaoCVV;
 	
-	@Pattern(regexp = "(0[1-9]|1[1-2])/[12]\\d{3}", message = "Informe a expiração no formato mm/aaaa")
+	@Pattern(regexp = "\\d{2}/\\d{2}", message = "Informe a expiração no formato mm/aaaa")
 	private String cartaoExpiracao;
+	
+	public void add(Pizza pizza) {
+		pizzas.add(pizza);
+	}
 }

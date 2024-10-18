@@ -3,8 +3,7 @@ package edu.ifsp.ifpizza.data;
 import edu.ifsp.ifpizza.model.Ingrediente;
 
 public interface IngredienteRepositorio {
-	Ingrediente find(String id);
-	Iterable<Ingrediente> findAll();
-	Ingrediente save(Ingrediente ingrediente);
-
+    Iterable<Ingrediente> findAll();
+    Ingrediente find(String id);
+    Ingrediente save(Ingrediente ingrediente);
 }
