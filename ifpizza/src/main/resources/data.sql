@@ -3,6 +3,7 @@ delete from pizza;
 delete from pizza_ingrediente;
 delete from pedido;
 delete from pizza_pedido;
+delete from cartao;
 
 insert into ingrediente (id, nome, tipo) values ('CTPY', 'Catupiry', 'BORDA');
 insert into ingrediente (id, nome, tipo) values ('SMPL', 'Simples', 'BORDA');

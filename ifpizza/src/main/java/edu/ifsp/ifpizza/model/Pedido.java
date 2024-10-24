@@ -39,8 +39,9 @@ public class Pedido {
 	@Digits(integer = 3, fraction = 0, message = "Informe o CVV com 3 dígitos")
 	private String cartaoCVV;
 	
-	@Pattern(regexp = "\\d{2}/\\d{2}", message = "Informe a expiração no formato mm/aaaa")
+	@Pattern(regexp = "\\d{2}/\\d{2}", message = "Informe a expiração no formato mm/aa")
 	private String cartaoExpiracao;
+	
 	
 	public void add(Pizza pizza) {
 		pizzas.add(pizza);

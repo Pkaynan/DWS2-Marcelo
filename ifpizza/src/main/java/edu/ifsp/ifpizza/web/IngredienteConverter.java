@@ -8,7 +8,7 @@ import edu.ifsp.ifpizza.data.IngredienteRepositorio;
 import edu.ifsp.ifpizza.model.Ingrediente;
 
 @Component
-public class IngredienteConverte implements Converter<String, Ingrediente>{
+public class IngredienteConverter implements Converter<String, Ingrediente> {
 	@Autowired
 	private IngredienteRepositorio ingredienteRepo;
 

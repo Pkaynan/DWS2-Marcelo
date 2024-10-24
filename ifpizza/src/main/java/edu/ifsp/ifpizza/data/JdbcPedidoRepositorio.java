@@ -1,9 +1,7 @@
 package edu.ifsp.ifpizza.data;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,46 +12,61 @@ import edu.ifsp.ifpizza.model.Pedido;
 import edu.ifsp.ifpizza.model.Pizza;
 
 @Repository
-public class JdbcPedidoRepositorio implements PedidoRepositorio{
-
+public class JdbcPedidoRepositorio implements PedidoRepositorio {
 	private SimpleJdbcInsert pedidoInserter;
-	private SimpleJdbcInsert pizzaInserter;
-	
+	private SimpleJdbcInsert pedidoPizzaInserter;
+	private SimpleJdbcInsert pedidoCartaoInserter;
+
 	public JdbcPedidoRepositorio(JdbcTemplate jdbc) {
-		pedidoInserter = new SimpleJdbcInsert(jdbc).withTableName("pedido").usingGeneratedKeyColumns("id");
+		pedidoInserter = new SimpleJdbcInsert(jdbc)
+				.withTableName("pedido")
+				.usingGeneratedKeyColumns("id");
+		
+		pedidoPizzaInserter = new SimpleJdbcInsert(jdbc)
+				.withTableName("pizza_pedido");
+		
+		pedidoCartaoInserter = new SimpleJdbcInsert(jdbc)
+				.withTableName("cartao");		
 	}
-	
+
 	@Override
 	public Pedido save(Pedido pedido) {
 		pedido.setDataCriacao(new Date());
-		long pedidoId = savePedido(pedido);
+		long pedidoId = salvarDetalhes(pedido);
 		pedido.setId(pedidoId);
-		for(Pizza pizza : pedido.getPizzas()) {
-			savePizza(pizza.getId(), pedidoId);
+		for (Pizza pizza : pedido.getPizzas()) {
+			salvarPizzaPedido(pizza, pedidoId);
 		}
-		return null;
+		return pedido;
 	}
-	
-	public void savePizza(Long id, long pedidoId) {
-		Map<String , Object> values = new HashMap<>();
-		values.put("pizza_id", id);
-		values.put("pedido_id", pedidoId);
-		
-		pizzaInserter.execute(values);
-	}
-	
-	private long savePedido(Pedido pedido){
-		Map<String , Object> values = new HashMap<>();
-		values.put("data",new Timestamp(pedido.getDataCriacao().getTime()));
-		values.put("nome", pedido.getNome());
+
+	private long salvarDetalhes(Pedido pedido) {
+		Map<String, Object> values = new HashMap<>();
+		values.put("data", pedido.getDataCriacao());
+		values.put("nome", pedido.getDataCriacao());
 		values.put("endereco", pedido.getEndereco());
 		values.put("cidade", pedido.getCidade());
 		values.put("estado", pedido.getEstado());
-		values.put("cep",pedido.getCep() );
+		values.put("cep", pedido.getCep());
+
+		long id = pedidoInserter.executeAndReturnKey(values).longValue();
 		
-		long pedidoId = pedidoInserter.executeAndReturnKey(values).longValue();
+		Map<String, Object> cartao = new HashMap<>();
+		cartao.put("pedido_id", id);;
+		cartao.put("numero", pedido.getCartaoNumero());
+		cartao.put("expiracao", pedido.getCartaoExpiracao());
+		cartao.put("cvv", pedido.getCartaoCVV());
+		pedidoCartaoInserter.execute(cartao);
 		
-		return pedidoId;
+		return id;
 	}
 
+	private void salvarPizzaPedido(Pizza pizza, long pedidoId) {
+		Map<String, Object> values = new HashMap<>();
+		values.put("pizza_id", pizza.getId());
+		values.put("pedido_id", pedidoId);
+		pedidoPizzaInserter.execute(values);
+	}
+
+	
 }

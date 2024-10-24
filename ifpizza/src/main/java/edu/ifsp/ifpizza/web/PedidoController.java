@@ -1,7 +1,7 @@
 package edu.ifsp.ifpizza.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,16 +21,16 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("pedido")
 public class PedidoController {
 	
+	@Autowired
 	private PedidoRepositorio pedidoRepo;
-	
+
 	@ModelAttribute(name = "pedido")
 	public Pedido pedido() {
 		return new Pedido();
 	}
 	
 	@GetMapping("/atual")
-	public String pedidoForm(Model model) {
-		log.info("Iniciando pedido");
+	public String pedidoForm() {
 		return "pedido-form";
 	}
 	
@@ -39,12 +39,11 @@ public class PedidoController {
 		if (errors.hasErrors()) {
 			return "pedido-form";
 		}
-		
 		pedidoRepo.save(pedido);
 		sessionStatus.setComplete();
+		log.info("Processando pedido: " + pedido);
 		
 		
-		log.info("Order submitted: " + pedido);
 		return "redirect:/";
 	}	
 }

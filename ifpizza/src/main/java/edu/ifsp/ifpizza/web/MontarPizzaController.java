@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -28,13 +27,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SessionAttributes("pedido")
 public class MontarPizzaController {
+	private final IngredienteRepositorio ingredienteRepo;
+	private final PizzaRepositorio pizzaRepo;
 	
-	@Autowired
-	private IngredienteRepositorio ingredienteRepo;
-	
-	@Autowired
-	private PizzaRepositorio pizzaRepo;
-	
+	public MontarPizzaController(IngredienteRepositorio ingredienteRepo, PizzaRepositorio pizzaRepo) {
+		this.ingredienteRepo = ingredienteRepo;
+		this.pizzaRepo = pizzaRepo;
+	}
 	
 	@ModelAttribute(name = "pedido")
 	public Pedido pedido() {
@@ -72,11 +71,10 @@ public class MontarPizzaController {
 		if (errors.hasErrors()) {
 			return "design";
 		}
-		
 		Pizza saved = pizzaRepo.save(pizza);
 		pedido.add(saved);
-		
 		log.info("Processando pizza: " + pizza);
+		
 		return "redirect:/pedidos/atual";
 	}
 }
