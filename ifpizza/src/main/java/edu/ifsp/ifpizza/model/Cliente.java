@@ -7,8 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Cliente {
 	
+	private long id;
 	private String nome;
-	private String id;
-	private String agenddamentoID;
-	
+	private String agendamento_id;
 }
