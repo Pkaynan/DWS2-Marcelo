@@ -14,7 +14,7 @@ public class IngredienteConverter implements Converter<String, Ingrediente> {
 
 	@Override
 	public Ingrediente convert(String id) {
-		return ingredienteRepo.find(id);
+		return ingredienteRepo.findById(id).orElseThrow();
 	}
 
 }

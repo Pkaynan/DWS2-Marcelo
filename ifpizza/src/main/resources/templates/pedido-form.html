@@ -48,24 +48,24 @@
 		<br>
 		
 		<label for="cartaoNumero">Cartão de crédito:</label>
-		<input type="text" th:field="*{cartaoNumero}">
+		<input type="text" th:field="*{cartao.numero}">
 		<span class="erro-validacao"
-			th:if="${#fields.hasErrors('cartaoNumero')}"
-			th:errors="*{cartaoNumero}"></span>				
+			th:if="${#fields.hasErrors('cartao.numero')}"
+			th:errors="{cartao.numero}"></span>				
 		<br>
 
 		<label for="cartaoCVV">CVV:</label>
-		<input type="text" th:field="*{cartaoCVV}">
+		<input type="text" th:field="*{cartao.cvv}">
 		<span class="erro-validacao"
-			th:if="${#fields.hasErrors('cartaoCVV')}"
-			th:errors="*{cartaoCVV}"></span>						
+			th:if="${#fields.hasErrors('cartao.cvv')}"
+			th:errors="*{cartao.cvv}"></span>						
 		<br>
 
 		<label for="cartaoExpiracao">Data de expiração:</label>
-		<input type="text" th:field="*{cartaoExpiracao}">
+		<input type="text" th:field="*{cartao.expiracao}">
 		<span class="erro-validacao"
-			th:if="${#fields.hasErrors('cartaoExpiracao')}"
-			th:errors="*{cartaoExpiracao}"></span>						
+			th:if="${#fields.hasErrors('cartao.expiracao')}"
+			th:errors="*{cartao.expiracao}"></span>						
 		<br>
 		
 		<button type="submit">Enviar</button>
