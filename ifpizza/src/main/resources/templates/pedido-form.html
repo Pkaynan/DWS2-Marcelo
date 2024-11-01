@@ -47,21 +47,21 @@
 			th:errors="*{cep}"></span>		
 		<br>
 		
-		<label for="cartaoNumero">Cartão de crédito:</label>
+		<label for="cartao.numero">Cartão de crédito:</label>
 		<input type="text" th:field="*{cartao.numero}">
 		<span class="erro-validacao"
 			th:if="${#fields.hasErrors('cartao.numero')}"
-			th:errors="{cartao.numero}"></span>				
+			th:errors="*{cartao.numero}"></span>				
 		<br>
 
-		<label for="cartaoCVV">CVV:</label>
+		<label for="cartao.cvv">CVV:</label>
 		<input type="text" th:field="*{cartao.cvv}">
 		<span class="erro-validacao"
 			th:if="${#fields.hasErrors('cartao.cvv')}"
 			th:errors="*{cartao.cvv}"></span>						
 		<br>
 
-		<label for="cartaoExpiracao">Data de expiração:</label>
+		<label for="cartao.expiracao">Data de expiração:</label>
 		<input type="text" th:field="*{cartao.expiracao}">
 		<span class="erro-validacao"
 			th:if="${#fields.hasErrors('cartao.expiracao')}"

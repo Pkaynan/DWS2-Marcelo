@@ -7,24 +7,25 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Entity
 public class Ingrediente {
 
-	@Id
-	@Column(columnDefinition = "CHAR(4")
-	private final String id;
+  @Id
+  @Column(columnDefinition = "CHAR(4)")
+  private final String id;
+  private final String nome;
+  
+  @Enumerated(EnumType.STRING)  
+  private final Tipo tipo;
 
-	private final String nome;
-
-	@Enumerated(EnumType.STRING)
-	private final Tipo tipo;
-
-	public enum Tipo {
-		BORDA, PROTEINA, VEGETAIS, QUEIJO
-	}
+  public static enum Tipo {
+    BORDA, PROTEINA, VEGETAIS, QUEIJO
+  }
 
 }

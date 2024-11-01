@@ -1,7 +1,5 @@
 package edu.ifsp.ifpizza.model;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,26 +15,25 @@ import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = "pedido")
 @Table(name = "cartao")
+@ToString(exclude = "pedido")
 public class CartaoCredito {
-
 	@Id
 	@Column(name = "pedido_id")
 	private Long id;
-
+	
 	@NotBlank(message = "Informe um número de cartão")
-	// @CreditCardNumber
+	//@CreditCardNumber
 	private String numero;
-
+	
 	@Digits(integer = 3, fraction = 0, message = "Informe o CVV com 3 dígitos")
 	private String cvv;
-
-	@Pattern(regexp = "\\d{2}/\\d{2}", message = "Informe a expiração no formato mm/aa")
-	private String expiracao;
 	
+	@Pattern(regexp = "\\d{2}/\\d{2}", message = "Informe a expiração no formato mm/aa")
+	private String expiracao;	
+
 	@OneToOne
-	@MapsId
 	@JoinColumn(name = "pedido_id")
+	@MapsId
 	private Pedido pedido;
 }
