@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"	
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Novo Cliente</title>
+</head>
+<body>
+	<h1>Novo Cliente</h1>
+	
+	<form method="post" th:action="@{/cadastro}" th:object="${cliente}">
+		
+		<label for="nome">Nome:</label> <br>
+		<input type="text" th:field="*{nome}"> 
+		<span class="erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+		<br><br>
+
+		<label for="endereco">Endereço::</label> <br>
+		<input type="text" th:field="*{endereco}"> 
+		<span class="erro" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
+		<br><br>
+		
+		<label for="telefone">Telefone:</label> <br>
+		<input type="text" th:field="*{telefone}"> 
+		<span class="erro" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span><br><br>
+		
+		<button type="submit">Cadastrar</button>
+	
+	</form>
+	
+</body>
+</html>

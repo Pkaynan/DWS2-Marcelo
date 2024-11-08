@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Agendamento</title>
+</head>
+<body>
+	<h1>Agendamento Cliente</h1>
+	
+	<form method="post" th:action="@{/agendamento}" th:object="${agendamento}">
+	
+		<label for="data">Data:</label> <br>
+		<input type="text" th:field="*{data}"> 
+		<span class="erro" th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
+		<br><br>
+		
+		<label for="hora">Hora:</label> <br>
+		<input type="text" th:field="*{hora}"> 
+		<span class="erro" th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}"></span>
+		<br><br>
+		
+		<label for="descricao">Descrição:</label> <br>
+		<input type="text" th:field="*{descricao}"> 
+		<span class="erro" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+		<br><br>
+		
+		<button type="submit">Agendar</button>
+	</form>
+</body>
+</html>
