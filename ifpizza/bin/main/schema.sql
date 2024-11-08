@@ -49,3 +49,26 @@ create table pizza_pedido (
 alter table pizza_pedido add foreign key (pizza_id) references pizza(id);
 alter table pizza_pedido add foreign key (pedido_id) references pedido(id);
 
+drop table if exists cliente;
+create table cliente (
+	cliente_id identity primary key,
+	nome_cliente varchar(200) not null,
+	endereco varchar(200) not null ,
+	telefone varchar(10)not null
+);
+
+drop table if exists agendamento;
+create table agendamento (
+    agendamento_id identity primary key,
+    data_hora datetime, 
+    descricao varchar(200) not null,
+    cliente_id bigint
+);
+alter table agendamento add foreign key (cliente_id) references cliente(cliente_id);
+
+
+
+
+
+
+

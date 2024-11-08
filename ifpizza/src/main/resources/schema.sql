@@ -49,3 +49,18 @@ create table pizza_pedido (
 alter table pizza_pedido add foreign key (pizza_id) references pizza(id);
 alter table pizza_pedido add foreign key (pedido_id) references pedido(id);
 
+
+drop table if exists users;
+create table users (
+	username varchar(50) not null primary key,
+	password varchar(500) not null,
+	enabled boolean not null
+);
+
+
+drop table if exists authorities;
+create table authorities (
+	username varchar(50) not null,
+	authority varchar(50) not null
+);
+alter table authorities add foreign key (username) references users(username);

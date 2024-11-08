@@ -1,16 +1,15 @@
 package edu.ifsp.ifpizza.model;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -23,16 +22,20 @@ import lombok.ToString;
 public class Cliente {
 
 	@Id
-	@Column(name = "id_cliente")
-	private BigInteger id_cliente;
+	@Column(name = "cliente_id")
+	private Long id_cliente;
 	
 	@NotBlank
 	private String nome_cliente;
 	
-	@ManyToMany
-	@JoinTable(name = "cliente_agendamento", joinColumns =  @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_agendamento"))
-	@MapsId
-	private Agendamento agendamento;
+	@NotBlank
+	private String endereco;
+	
+	@NotBlank
+	private String telefone;
+	
+	@OneToMany(mappedBy = "clientes")
+	private List<Agendamento> agendamentos = new ArrayList<>();
 	
 	
 }
