@@ -2,17 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>IFPizza</title>
+	<meta charset="UTF-8">
+	<title>IFPizza</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" th:href="@{/css/bulma.min.css}">
 </head>
 <body>
-	<h1>IFPizza</h1>
-	
-	<img th:src="@{/images/logo.jpg}">
-	
-	<h2>
-		<a th:href="@{/design}">Monte sua pizza!</a>
-	</h2>
-
+	<section class="section">
+		<div class="container">
+			<h1 class="title">IFPizza</h1>
+			<img th:src="@{/images/logo.jpg}">
+			
+			<nav class="level">
+				<div class="level-left">				
+					<a th:href="@{/design}" class="level-item">Monte sua pizza!</a>
+					
+					<div class="level-item">
+						<form th:action="@{/logout}" method="post">
+							<button type="submit" class="button is-ghost">Sair</button>
+						</form>			
+					</div>
+					
+				</div>
+			</nav>
+		</div>		
+	</section>
 </body>
 </html>
