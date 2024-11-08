@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>IFPizza</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/main.css}" />
   </head>
 
@@ -10,7 +11,7 @@
     <h1>Monte sua pizza!</h1>
     <img th:src="@{/images/logo.jpg}"/>
 
-	<form method="post" th:object="${pizza}">
+	<form method="post" th:action="@{/design}" th:object="${pizza}">
 		<span class="erro-validacao"
 			th:if="${#fields.hasErrors('ingredientes')}"
 			th:errors="*{ingredientes}"></span>

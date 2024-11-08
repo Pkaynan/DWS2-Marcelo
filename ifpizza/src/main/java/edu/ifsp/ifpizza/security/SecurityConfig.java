@@ -44,7 +44,11 @@ public class SecurityConfig {
 			/* -- end: H2 Console -- */
 			
 			.authorizeHttpRequests(authorizeRequests ->	authorizeRequests
+<<<<<<< HEAD
 					.requestMatchers("/css/**", "/login").permitAll()
+=======
+					.requestMatchers("/css/**").permitAll()
+>>>>>>> 69d13ca21606d8cc630423d092f6eccd97e408d4
 					.requestMatchers("/**").hasRole("USER")
 			)		
 			.formLogin(form -> form
